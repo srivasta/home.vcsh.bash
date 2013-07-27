@@ -1,0 +1,7 @@
+##frm.fn ()
+##{
+  set -f;
+  frmcmd "$*";
+  set +f;
+
+##}

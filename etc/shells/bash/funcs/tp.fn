@@ -1,0 +1,7 @@
+##tp.fn ()
+##{
+
+  perl -e 'printf "%c[%s;r%c[2J%c7%c[1;H%s %c8%c[%dB", 27, 
+           int (2 + (length "@ARGV") / 80), 27, 27, 27, @ARGV, 
+           27, 27, int (2 + (length "@ARGV") / 80);' "$host_pfx$rev_vid `dirs` $norm_vid " 
+##}

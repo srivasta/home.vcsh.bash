@@ -1,0 +1,32 @@
+##pop.fn ()
+##{
+
+      if [ -O "$CDEXIT"  ] && [ -f "$CDEXIT"  ]; then  
+          source $CDEXIT 
+      fi;
+      if [ "X$1" = "X" ]; then
+	popd 
+      else
+	popd "$1" > /dev/null
+      fi
+      last_dir="$this_dir"
+      this_dir="`pwd`"
+      if [ "$TERM" = "xterm" -o "$TERM" = "xterm-debian" -o "$TERM" = "Eterm" ]; then
+          workdir=`prunepwd 30`
+         tn "$WHOAMI@$HOST:$workdir"
+         #tp
+      else
+          workdir=`prunepwd 20`
+      fi
+      if [ -O "$CDENTER"  ] && [ -f "$CDENTER" ]; then 
+         source $CDENTER 
+      fi
+      if command -v less >/dev/null 2>&1 ; then
+	#ls -asCF | less -XFiMs
+      	ls -asCF | more  -ds
+      else
+      	ls -asCF | more  -ds
+      fi
+
+    
+##}

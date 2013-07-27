@@ -1,0 +1,7 @@
+# Function which calculates the time left until dinstall is run
+
+# dcd ()
+#{
+  date -d "01/01/1970  $(($(TZ=US/Eastern date -d 14:52:00 +%s) - \
+                          $(date +%s) + 86400 % 86400)) seconds" +%T
+#}

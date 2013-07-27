@@ -1,0 +1,27 @@
+
+NLSPATH="./%N:/usr/local/etc/%N"
+NLS_DIRS='/var/dcelocal/nls/msg /opt/dcelocal/nls/msg /usr/lib/nls/msg' 
+for dir in $NLS_DIRS; do
+	if test -d  $dir/. ; then
+		for j in $dir/*; do
+			NLSPATH="$NLSPATH:$j/%N"
+		done
+	fi
+done
+export NLSPATH
+
+if [ "X$NLSPATH" = "X" ]; then
+    XNLSPATH="/usr/X11R6/lib/X11/nls"
+else
+    NLSPATH="$XNLSPATH:/usr/X11R6/lib/X11/nls"
+fi
+export XNLSPATH
+# dce logins need this.
+##if test -f $HOME/etc/hosts ; then
+##	export hostname_completion_file=$HOME/etc/hosts
+##fi
+
+#Variables for lclint:
+#if test -f /usr/local/bin/lclintvars ; then
+#	. /usr/local/bin/lclintvars
+#fi

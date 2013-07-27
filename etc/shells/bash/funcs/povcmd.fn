@@ -1,0 +1,6 @@
+#povcmd {
+  /usr/bin/povray +x +ft +L/usr/lib/povray3/include \
+                        +P +V +O${2:-junk.tga} +w64 +h64 +Q9 -D \
+                        +I$1
+   xv -perfect ${2:-junk.tga}
+#}

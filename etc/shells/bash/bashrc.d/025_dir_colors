@@ -1,0 +1,7 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+    if test "$TERM" = "con80x25" -o "$TERM" = "xterm" -o "$TERM" = "xterm-debian" ;	then
+	eval `dircolors -b $HOME/etc/dir_colors`;
+    fi
+fi

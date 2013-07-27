@@ -1,0 +1,7 @@
+# If running interactively, then:
+if [ -n "$PS1" ]; then
+
+    alias remp="remind -a -p  ~/lib/reminders | rem2ps -st 36 -ft ZapfChancery-MediumItalic -l-c3 > ~/tmp/junk.ps"
+    alias rmln="perl -ni.bak -e 'print unless /\S/ ? (\$skip = 0) : \$skip++'"
+    alias mrem='remind -q -h -a -r -v ~/lib/reminders'
+fi

@@ -1,0 +1,21 @@
+#                               -*- Mode: Sh -*- 
+# .bash_aliases --- 
+# Author           : Manoj Srivastava ( srivasta@glaurung.green-gryphon.com ) 
+# Created On       : Fri Sep 29 12:09:40 2000
+# Created On Node  : glaurung.green-gryphon.com
+# Last Modified By : Manoj Srivastava
+# Last Modified On : Wed Oct  8 10:21:24 2008
+# Last Machine Used: anzu.internal.golden-gryphon.com
+# Update Count     : 11
+# Status           : Unknown, Use with caution!
+# HISTORY          : 
+# Description      : 
+# 
+# 
+
+for file in $default_bashdir/bash_aliases.d/*; do
+    case "$file" in
+        *~|*.bak|*.old|*.sw?|*.zwc|*.disabled) continue;;
+    esac
+    source "$file"
+done

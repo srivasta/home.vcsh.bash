@@ -1,0 +1,4 @@
+#sgmlscmd () 
+#{ 
+    nsgmls -e -g -s -u /usr/lib/sgml/sgml/html.decl $1 
+#}

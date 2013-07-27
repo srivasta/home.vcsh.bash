@@ -1,0 +1,11 @@
+# If running interactively, then:
+if [ -n "$PS1" ]; then
+
+    alias tf="perl -e 'printf \"%c]50;%s%c\", 27, @ARGV, 7 ; ' "
+    alias tn="perl -e 'printf \"%c]2;%s%c\", 27, @ARGV, 7 ; ' "
+    alias ti="perl -e 'printf \"%c]1;%s%c\", 27, @ARGV, 7 ; ' "
+    alias tb="perl -e 'printf \"%c]0;%s%c\", 27, @ARGV, 7 ; ' "
+
+# use xs to reset xterm window 
+    alias xs='set noglob; eval `resize`; unset noglob;reset'
+fi

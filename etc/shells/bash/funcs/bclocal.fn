@@ -1,0 +1,20 @@
+
+
+file=$1
+FLAVOUR="emacs19 emacs20"
+
+if [ ! -f $file ]; then
+    echo $file: No such file
+    return 1
+fi
+
+for flavour in $(echo "$FLAVOUR"); do
+    $flavour -batch -f batch-byte-compile $1
+    if [ -f ${1}c  ]; then
+	 echo mv -f ${1}c ~/lib/emacs/$flavour/
+	 mv -f ${1}c ~/lib/emacs/$flavour/
+    else
+	echo could not compile for $flavour
+    fi
+done
+

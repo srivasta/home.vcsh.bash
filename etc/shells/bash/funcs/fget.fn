@@ -1,0 +1,7 @@
+##fget.fn ()
+##{
+ set -f;
+ fgetcmd "$*";
+ set +f;
+
+##}

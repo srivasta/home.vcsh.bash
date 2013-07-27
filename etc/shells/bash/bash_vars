@@ -1,0 +1,34 @@
+#! /bin/bash
+
+
+# Bourne Again SHell init file.
+#
+# Files you make look like rw-r--r--
+umask 022
+ulimit -c 0; 
+
+export default_dir=${default_dir:=$HOME}
+export default_bashdir=${default_bashdir:=$default_dir/etc/shells/bash}
+
+for file in $default_bashdir/bash_aliases.d/*; do
+    case "$file" in
+        *~|*.bak|*.old|*.sw?|*.zwc|*.disabled) continue;;
+    esac
+    source $file
+done
+
+
+if command -v pscol >/dev/null 2>&1 ; then
+`pscol`
+fi
+
+
+
+
+# Local Variables: 
+# comment-start: "#" 
+# tab-width: 2 
+# mode: sh
+# End: 
+
+

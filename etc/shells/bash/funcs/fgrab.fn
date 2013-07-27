@@ -1,0 +1,7 @@
+##fgrab.fn ()
+##{
+  set -f;
+   fgrabcmd "$*";
+  set +f;
+
+##}

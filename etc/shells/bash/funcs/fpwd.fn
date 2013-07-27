@@ -1,0 +1,5 @@
+##fpwd.fn ()
+##{
+  echo  $FSP_DIR  on  $FSP_HOST port $FSP_PORT;
+  getnet $FSP_HOST;
+##}

@@ -1,0 +1,12 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+	
+    if test ! "$LOGIN_SHELL" ; then
+	if test -f ~/lib/reminders -a -x /usr/local/bin/remind ; then
+	    /usr/local/bin/remind -q -h -a -r -v ~/lib/reminders
+	fi
+    fi
+    echo ''
+fi
+

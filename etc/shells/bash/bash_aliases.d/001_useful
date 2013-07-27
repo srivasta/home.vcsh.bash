@@ -1,0 +1,27 @@
+
+# If running interactively, then:
+if [ -n "$PS1" ]; then
+    # Some useful aliases.
+    #unalias run-help
+    alias help=run-help
+
+    alias c=clear
+    alias cx="chmod ugo+x "
+    alias back='cd $last_dir'
+    alias d="dirs | perl -e '$tmpvar'"
+
+    alias bsu='/bin/su --preserve-environment --shell=/bin/bash root "-- -i  -rcfile ~srivasta/.rootrc" '
+
+    alias pd='pushd'
+    alias m='less'
+    alias h='history'
+
+    alias rot13=' tr A-Za-z N-ZA-Mn-za-m'
+
+    alias embc='emacs -batch -f batch-byte-compile'
+    alias em='GDK_NATIVE_WINDOWS=1 emacsclient -c '
+
+
+    alias chk_utf='find . -type f | while read i; do iconv -f utf-8 -t ucs-4 $i > /dev/null; echo $? $i; done | grep ^1'
+    alias perldb='perl -de 0 '
+fi

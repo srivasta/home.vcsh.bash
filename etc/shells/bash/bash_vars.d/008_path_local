@@ -1,0 +1,19 @@
+
+## Local directories
+LOCAL_DIRS="/usr/local/bin /usr/local/scripts "
+
+LOCAL_BIN=
+#set X $LOCAL_DIRS
+#shift
+#for dir 
+#do
+#	if test -d  $dir/. ; then
+#		LOCAL_BIN="$LOCAL_BIN:$dir"
+#	fi
+#	shift 
+#done
+for dir in  $LOCAL_DIRS; do
+    if test -d  $dir/. ; then
+       LOCAL_BIN="$LOCAL_BIN:$dir"
+    fi
+done

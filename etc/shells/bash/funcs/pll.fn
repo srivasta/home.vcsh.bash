@@ -1,0 +1,9 @@
+#
+# bash front end for pil_login
+#
+#pll ()
+#{
+    KRB5CCNAME=`pil_login "$*"`;
+    export KRB5CCNAME;
+#}
+

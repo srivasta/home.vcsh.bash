@@ -1,0 +1,21 @@
+
+if test -e $HOME/bin/config.guess ; then
+    export MY_SYS_TYPE=`$HOME/bin/config.guess`;
+fi
+
+DEFAULT_DIRS="$default_dir/bin/$MY_SYS_TYPE $default_dir/sbin $default_dir/bin "
+MY_BIN=
+#set X $DEFAULT_DIRS 
+#shift
+#for dir 
+#do
+#    if test -d  $dir/. ; then
+#	MY_BIN="$MY_BIN:$dir"
+#    fi
+#    shift 
+#done
+for dir in $DEFAULT_DIRS ; do
+    if test -d  $dir/. ; then
+        MY_BIN="$MY_BIN:$dir"
+    fi
+done

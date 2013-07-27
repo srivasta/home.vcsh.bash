@@ -1,0 +1,44 @@
+# If running interactively, then:
+if [ -n "$PS1" ]; then
+
+    my_uml_run='rm -f cow_fs; TMPDIR=/scratch/sandbox/tmp screen -L -d -m -S building_uml /usr/bin/linux umid=build mem=256M con0=fd:0,fd:1 ssl=pts con=pts devfs=nomount eth0=daemon,,unix,/var/run/uml-utilities/uml_switch.ctl  hostfs=/scratch/sandbox/staging,append selinux=1 audit=1 enforcing=0 ubdb=swap ubda=cow_fs,root_fs'
+
+    alias d-b="dpkg-buildpackage -i'(?:^|/).*~$|(?:^|/)\.#.*$|(?:^|/)\..*\.swp$|(?:^|/),,.*(?:$|/.*$)|(?:^|/)(?:DEADJOE|\.cvsignore|\.arch-inventory|\.bzrignore|\.gitignore)$|(?:^|/)(?:CVS|RCS|\.deps|\{arch\}|\.arch-ids|\.svn|\.hg|_darcs|\.git|.gitmodules|\.shelf|_MTN|\.bzr(?:\.backup|tags)?)(?:$|/.*$)' -D -rfakeroot"
+
+    alias acs='apt-cache search'
+    alias acsh='apt-cache show'
+    alias acp='apt-cache policy'
+    alias adg="apt-get dist-upgrade"
+    alias agi="apt-get install"
+    alias ati="aptitude install"
+    alias ag="apt-get upgrade"
+    alias au="apt-get update"
+    alias up="aptitude update ; aptitude safe-upgrade"
+    alias ge='grep-excuses'
+    alias llog="$PAGER /var/log/syslog"     # take a look at the syslog
+    alias tlog="tail -f /var/log/syslog"    # follow the syslog
+    alias zshskel="source /etc/skel/.zshrc" # source skeleton zshrc
+    
+    alias mlint='lintian --info --show-overrides --checksums --color=auto'
+    alias mbld='ssh -t 192.168.3.45 bin/remote_build '
+    alias muml_halt='ssh -t root@192.168.3.45 halt'
+
+        # debian upgrade
+        # Execute \kbd{apt-get update \&\& }\\&\quad \kbd{apt-get dist-upgrade}
+    upgrade() {
+        if [[ -z "$1" ]] ; then
+            $SUDO apt-get update
+            $SUDO apt-get -u upgrade
+        else
+            ssh $1 $SUDO apt-get update
+                # ask before the upgrade
+            local dummy
+            ssh $1 $SUDO apt-get --no-act upgrade
+            echo -n 'Process the upgrade?'
+            read -q dummy
+            if [[ $dummy == "y" ]] ; then
+                ssh $1 $SUDO apt-get -u upgrade --yes
+            fi
+        fi
+    }
+fi

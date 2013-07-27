@@ -1,0 +1,12 @@
+
+INFO_DIRS="/usr/local/lib/emacs/site-lisp/gnus/texi/ /usr/local/lib/emacs/info/
+          /usr/local/lib/emacs/info/vm/  /usr/info/"
+
+INFOPATH=.
+for dir in  $INFO_DIRS; do
+	if test -d  $dir/. ; then
+		INFOPATH="$INFOPATH:$dir"
+	fi
+done
+unset INFOPATH
+#export INFOPATH

@@ -1,0 +1,6 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+    PATH=$(perl -e 'print join(":", grep("$_" ne "" && ! $dup{$_}++, split(":",$ENV{PATH})))')
+fi
+

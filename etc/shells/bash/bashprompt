@@ -1,0 +1,121 @@
+#!/bin/bash
+
+if [ -x /bin/tempfile ]; then
+    termcapfile=`tempfile -p tcap -m 0600 `;
+    outfile=`tempfile -p outp -m 0600 `;
+else
+    set -e
+    mkdir /tmp/prompt$$
+    termcapfile=/tmp/prompt$$/tcap
+    outfile=/tmp/prompt$$/output
+		set +e
+fi
+
+if [ "$TERMCAP" != "" ]; then
+    printenv TERMCAP | tr ':2' '\012 ' > $termcapfile;
+fi
+
+
+if [ -f $termcapfile ] && [ -s $termcapfile ]&& [ -O $termcapfile ]; then
+    cat $termcapfile |  awk '/^me=/ {print substr($0, 4)}' | \
+			sed 's/\\E//' >& $outfile
+    export norm_vid="`cat $outfile`"
+
+    cat $termcapfile | awk ' /^so=/ {print substr($0, 4)}' | \
+                       sed 's/\\E/\/' >& $outfile 
+    export rev_vid="`cat $outfile`"
+
+    cat $termcapfile | awk ' /^mh=/ {print substr($0, 4)}' | \
+                       sed 's/\\E//' >& $outfile
+    export dim_vid="`cat $outfile`"
+
+    cat $termcapfile | awk ' /^md=/ {print substr($0, 4)}' | \
+                       sed 's/\\E//' >& $outfile
+    export bld_vid="`cat $outfile`"
+fi
+rm -f $outfile $termcapfile
+if [ -d /tmp/prompt$$ ]; then
+    rmdir /tmp/prompt$$
+fi
+
+APM="/usr/bin/apm"
+if [ -d /proc/apm ]; then
+
+   function apm_percent()
+   {
+     state_line=$($APM)
+     cut_leading=${state_line#*: }
+     APM_PERCENT=${cut_leading%%%*}
+     echo $APM_PERCENT
+   }
+
+   function apm_charge()
+   {
+     case "$($APM)" in
+       *on-line*)
+         APM_CHARGE="+" ;;
+       *off-line*)
+         APM_CHARGE="-" ;;
+     esac
+     echo $APM_CHARGE
+   }
+   function apm_color()
+   {
+     if  [  "$(apm_charge)"  =  "+"  ];  then
+       echo  "1;37"
+     else
+       case  $(apm_percent)  in
+          10?)  echo  "1;37"  ;;
+           9?)  echo  "0;34"  ;;
+           8?)  echo  "0;34"  ;;
+           7?)  echo  "0;34"  ;;
+           6?)  echo  "0;34"  ;;
+           5?)  echo  "0;32"  ;;
+           4?)  echo  "0;32"  ;;
+           3?)  echo  "1;33"  ;;
+           2?)  echo  "1;33"  ;;
+           1?)  echo  "0;31"  ;;
+            ?)  echo  "0;31;5"  ;;
+            *)  echo  "0;35"  ;;
+       esac
+     fi
+   }
+   function  apm_color_prompt
+   {
+     PS1="\[\e[$(apm_color)m\]\h\$\[\e[0m\]  "
+   }
+
+   #  linux  console
+   if  [  "$TERM"  =  "linux"  ];  then
+     PROMPT_COMMAND=apm_color_prompt
+   fi
+
+   function  echo_apm
+   {
+     echo -n "($(apm_charge)$(apm_percent)) "
+   }
+
+   #  alternately echo apm state before prompt
+   #  PROMPT_COMMAND = echo_apm
+else
+    function  apm_color 
+    {
+	echo -n ''
+    }
+fi
+
+set_prompt ()
+{
+    local SAVE_CRS=`tput sc 2> /dev/null`
+    local RESET_CRS=`tput rc 2> /dev/null`
+    local CLOCKPOS=`tput cup 0 90 2> /dev/null`
+    local FOREG=`tput setf 6 2> /dev/null` 
+    local ALT_FOREG=`tput setf 3 2> /dev/null`
+    local BACKG=`tput setb 0 2> /dev/null`
+    local NORMAL=`tput sgr0 2> /dev/null`
+    local BOLD=`tput bold 2> /dev/null`
+    #PS1="\[${NORMAL}${SAVE_CRS}${CLOCKPOS}${FOREG}${BACKG}${BOLD} \@${RESET_CRS}${BOLD}${ALT_FOREG}\]\u\[${NORMAL}\]@\h:\w\$ "
+}
+#set_prompt
+
+# PROMPT_COMMAND='PS1="\e[$(apm_color)m$host_pfx$rev_vid<\u@\h:$norm_vid[$dim_vid$PROMPTCOMMENT${workdir}${norm_vid}]> "'

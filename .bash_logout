@@ -1,0 +1,1 @@
+etc/shells/bash/bash_logout

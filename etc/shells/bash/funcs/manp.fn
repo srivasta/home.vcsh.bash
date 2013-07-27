@@ -1,0 +1,24 @@
+#! /bin/bash
+#                               -*- Mode: Sh -*- 
+# manp.fn --- 
+# Author           : Manoj Srivastava ( srivasta@graceland ) 
+# Created On       : Mon Jan 24 14:51:54 1994
+# Created On Node  : graceland
+# Last Modified By : Manoj Srivastava
+# Last Modified On : Mon Jan 24 15:45:08 1994
+# Last Machine Used: graceland
+# Update Count     : 12
+# Status           : Unknown, Use with caution!
+# HISTORY          : 
+# Description      : 
+# 
+# 
+
+if [ $# -lt 1 ]; then
+	echo "Usage: $0 [section] manual "
+	exit 1;
+fi
+# 0 Courier                1 Helvetica              2 Times-Roman           
+# 3 AvantGarde-Book        4 Bookman-Light          5 NewCenturySchlbk-Roman
+# 6 Palatino-Roman         7 Helvetica-Narrow       b ZapfChancery-MediumItalic	
+man $@ | psfbs -i -r2 | psf -M 1.5,1,1,1,i -f Bookman-Light 

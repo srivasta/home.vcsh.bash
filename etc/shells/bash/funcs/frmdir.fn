@@ -1,0 +1,6 @@
+##frmdir.fn ()
+##{
+ set -f;
+ frmdircmd "$*";
+ set +f;
+##}

@@ -1,0 +1,26 @@
+##op.fn ()
+##{
+cat <<END_INPUT
+	  C operator precedence/associativity chart
+
+Arity       Operator					Assoc
+--------------------------------------------------------------
+binary	  ()  []  ->  .					l -> r
+unary	  !   ~   ++  --  -  (type)  *  &  sizeof	r -> l
+binary	  *   /   %					l -> r
+binary	  +   -						l -> r
+binary	  <<  >>					l -> r
+binary	  <   <=  >   >=				l -> r
+binary	  ==  !=					l -> r
+binary	  &						l -> r
+binary	  ^						l -> r
+binary	  |						l -> r
+binary	  &&						l -> r
+binary	  ||						l -> r
+ternary	  ?:						r -> l
+binary	  = += -= *= /= %= >>= <<= &= ^= |=		r -> l
+binary	  ,						l -> r
+--------------------------------------------------------------
+						From K&R, p 49
+END_INPUT
+##}

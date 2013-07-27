@@ -1,0 +1,37 @@
+##seq.fn ()
+##{
+# Subfunction needed by `repeat'.
+   local lower upper step output;
+
+   case "$#" in
+       1) lower=1 upper="$1" step=1;;
+       2) lower="$1" upper="$2" step=1;;
+       3) lower="$1" upper="$3" step="${2:-1}";;
+       *) echo error in args. need one, two, or three args
+          return 2;;
+    esac
+    if [ $step -le 0 ]; then
+        if [ $lower -le $upper ]; then
+	    echo When the step is negative, the lower bound $lower has to be
+	    echo larger than the upper bound $upper
+	    return 2
+	fi
+        while [ $lower -ge $upper ];
+        do
+            output="$output $lower";
+            lower=$(( $lower + $step ));
+        done;
+    else
+        if [ $lower -ge $upper ]; then
+	    echo When the step is negative, the lower bound $lower has to be
+	    echo larger than the upper bound $upper
+	    exit 2
+	fi
+        while [ $lower -le $upper ];
+        do
+            output="$output $lower";
+            lower=$(( $lower + $step ));
+        done;
+    fi
+    echo $output
+##}

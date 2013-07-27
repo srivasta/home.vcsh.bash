@@ -1,0 +1,7 @@
+##fcat.fn ()
+##{
+  set -f;
+   fcatcmd "$*";
+  set +f;
+
+##}

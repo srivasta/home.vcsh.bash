@@ -1,0 +1,3 @@
+#!/bin/bash
+
+lynx http://www.debian.org/Bugs/db/pa/l$1;

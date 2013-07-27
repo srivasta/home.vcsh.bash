@@ -1,0 +1,2 @@
+find $1 -type f -size +20k -perm -111 | xargs file |  egrep -v 'script|set[egu]id|text'  | perl -ple 's/:.*//o'| while read i;do
+echo -n $i; tcx $i;done

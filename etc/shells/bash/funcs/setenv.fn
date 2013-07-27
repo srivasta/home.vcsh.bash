@@ -1,0 +1,8 @@
+##setenv.fn ()
+##{
+#
+# Csh compatability:
+#
+    export $1="$2"
+ 
+##}

@@ -1,0 +1,45 @@
+##sterm.fn ()
+##{
+# alias term='set noglob; eval `tset -Q -s `'
+#
+# term -- a shell function to set the terminal type interactively or not.
+#
+
+
+	local	t
+
+	if [ $# != 0 ] ; then
+		eval $(tset -sQ $1)
+	else				# interactive
+		if [ -z "$TERM" ] ; then
+			TERM="unknown"
+		fi
+
+		case "$TERM" in
+			network|dialup|unknown|lat)
+				TERM=unknown
+				;;
+	                emacs)  ;;
+	                xterm)  ;;
+	                Eterm)  ;;
+	                xterm-debian)
+				;;
+                        console) 
+				TERM=linux
+				eval $(tset -sQ)
+                                ;;
+			*)
+				eval $(tset -sQ)
+				;;
+		esac
+
+		while [ "$TERM" = "unknown" ] ; do
+			echo -n "Terminal type: "
+			read t
+			if [ -n "$t" ] ; then
+				eval $(tset -sQ $t)
+				export TERM="$t"
+			fi
+		done
+	fi
+##}

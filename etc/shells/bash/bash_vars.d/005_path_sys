@@ -1,0 +1,32 @@
+
+## What directories should we be looking for?
+COMMON_SYS_DIRS="/bin /usr/bin /sbin /usr/sbin /usr/local/sbin /usr/games"
+
+case "$MY_SYS_TYPE" in
+    hppa1.1-hp-hpux*)
+	SYS_DIRS="/bin/posix /usr/contrib/bin /usr/contrib/games"
+	export MORE=-l
+	;;
+    mips-dec-ultrix*)
+    # Don't make useless coredump files.  If you want a coredump,
+    # say "ulimit -c unlimited" and then cause a segmentation fault.
+	ulimit -c 0; # ulimit only has afnp on HP's
+	SYS_DIRS="/usr/new /usr/ucb "
+	export MORE=-l
+	;;
+    alpha-dec-osf*)
+	export MORE=-e;
+	SYS_DIRS="/usr/ucb /usr/local/bin/AF"
+	ulimit -c 0; 
+	;;
+    *)
+	;;
+esac
+
+SYS_BIN=
+for dir in  $COMMON_SYS_DIRS $SYS_DIRS; do
+        if test -d  $dir/. ; then
+                SYS_BIN="$SYS_BIN:$dir"
+        fi
+done
+

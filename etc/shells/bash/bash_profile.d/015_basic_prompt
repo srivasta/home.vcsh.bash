@@ -1,0 +1,8 @@
+
+if test "$PS1" ; then
+  PS1='\u@\h(\#)$ '
+  ignoreeof=1
+  if test -z "$TERM" ;then
+       echo -n "Terminal type? ";read TERM;export TERM
+  fi
+fi

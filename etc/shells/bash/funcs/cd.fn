@@ -1,0 +1,29 @@
+##cd ()
+##{
+      if [ -O "$CDEXIT"  ] && [ -f "$CDEXIT"  ]; then  
+          source $CDEXIT ;
+      fi
+      if [ "X$1" = "X" ]; then
+	builtin cd ~/.
+      else
+	builtin cd "$1"
+      fi
+      last_dir="$this_dir"
+      this_dir="`pwd`"
+      if [ "$TERM" = "xterm" -o "$TERM" = "xterm-debian" -o "$TERM" = "Eterm" ]; then
+          workdir=`prunepwd 30`
+          tn "$WHOAMI@$HOST:$workdir"
+      else
+          workdir=`prunepwd 20`
+      fi
+      if [ -O "$CDENTER" ] && [ -f "$CDENTER" ]; then 
+         source $CDENTER 
+      fi
+      if command -v less >/dev/null 2>&1 ; then
+	#ls -asCF | less -FXiMs
+      	ls -asCF | more  -ds
+      else
+      	ls -asCF | more  -ds
+      fi
+#      echo "]2\;$$this_dir"
+#}

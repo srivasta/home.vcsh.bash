@@ -1,0 +1,10 @@
+
+export history_control="ignoredups"
+export command_oriented_history=1
+if test -d ~/var/log ; then 
+  export HISTFILE=~/var/log/bash_history;
+fi
+export HISTSIZE=1024
+export HOSTSFILE=$hostname_completion_file
+export HISTCONTROL=ignoreboth
+export HISTIGNORE="dir*:cd *:ls*:less *:&"

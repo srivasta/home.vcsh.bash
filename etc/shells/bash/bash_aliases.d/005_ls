@@ -1,0 +1,27 @@
+# If running interactively, then:
+if [ -n "$PS1" ]; then
+
+    if [ "X$TERM" = "Xdumb" ]; then
+	alias l='ls   -asCF '
+	alias lt="ls  -tasCF "
+	alias lu="ls  -uasCF "
+	alias llx="ls -XasCF "
+	alias ll="ls  -als   "
+	alias llt="ls -tals "
+	alias llc="ls -cals "
+	alias llu="ls -uals "
+	alias lls="ls -Sals "
+	alias llx="ls -Xals "    
+    else
+	alias l='ls         --color=auto -asCF'
+	alias lt="ls        --color=auto -tasCF "
+	alias lu="ls        --color=auto -uasCF "
+	alias llx="ls       --color=auto -XasCF "
+	alias ll="ls        --color=auto -als "
+	alias llt="ls       --color=auto -tals "
+	alias llc="ls -cals --color=auto "
+	alias llu="ls -uals --color=auto "
+	alias lls="ls -Sals --color=auto "
+	alias llx="ls -Xals --color=auto "
+    fi
+fi

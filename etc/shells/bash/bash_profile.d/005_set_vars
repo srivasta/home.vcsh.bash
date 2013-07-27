@@ -1,0 +1,8 @@
+
+export ZDOTDIR=${ZDOTDIR:=$default_dir/etc/shells/zsh}
+# xterm window names and dce logins need this.
+export HOST=`hostname | cut -d. -f1 -`
+export WHOAMI=`whoami`
+export DOMAIN=`/bin/dnsdomainname`
+export LOGIN_SHELL=true
+umask 022

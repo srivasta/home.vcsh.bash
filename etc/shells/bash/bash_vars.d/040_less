@@ -1,0 +1,14 @@
+
+LESS="-cisMP?f%f :std in .?n?m(file %i of %m) ..?ltline %lt :byte %bB?s/%s ..?e(END) ?x- Next\: %x.:?pB%pB\%..%t"
+export LESS
+export LESSCHARSET=utf-8
+if command -v lesspipe >/dev/null 2>&1 ; then
+	eval $(lesspipe)
+else
+	if command -v lessopen  >/dev/null 2>&1 ; then
+		export LESSOPEN="| lesspipe '%s'";
+		export LESSCLOSE="lesspipe '%s' '%s'";
+	fi
+fi
+
+export PAGER='less -ciM'

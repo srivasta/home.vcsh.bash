@@ -1,0 +1,7 @@
+#! /bin/sh
+# we expect to see tiff files on the command line
+sendfax -d "Bernice Thomas@16038846249" -c "Time Cards" \
+        -f "Manoj Srivastava <srivasta@acm.org>" \
+        -r "Time Cards" \
+        -x "COMPAQ"  \
+        -y "USEG, Nashua" -v -v "$@"

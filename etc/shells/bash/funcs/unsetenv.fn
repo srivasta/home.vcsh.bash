@@ -1,0 +1,8 @@
+##unsetenv.fn ()
+##{
+#
+# Csh compatability:
+#
+    unset $*
+ 
+##}

@@ -1,0 +1,9 @@
+##fcd.fn ()
+##{
+ local remdir
+ set -f;
+ remdir=`fcdcmd "$1"`;
+ setenv FSP_DIR $remdir;
+ set +f;
+
+##}

@@ -1,0 +1,8 @@
+  #
+  # Convert between the stty ^H control character form and the readline \C-H
+  # form
+  #
+##cvt ()
+##{
+  	echo "$@" | cat -v | sed 's/\^/\\C-/'
+##}

@@ -1,0 +1,8 @@
+
+export IRCNICK="Manoj"
+export IRCUSER='Manoj Srivastava <srivasta@debian.org>' 
+export IRCNAME='Manoj Srivastava <srivasta@debian.org>' 
+export IRCSERVER='irc.us.linpeople.org'
+export IRCPATH='.:~/bin/irc:/usr/local/lib/irc/script'
+##export IRCRC='~/etc/bitchxrc'
+export IRC_SERVERS_FILE='~/etc/ircservers'        

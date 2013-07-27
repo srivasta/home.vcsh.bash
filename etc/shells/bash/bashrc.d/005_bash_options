@@ -1,0 +1,18 @@
+if test ! -z "$PS1" ; then
+    shopt -s cdspell checkhash checkwinsize cmdhist histreedit histappend
+    shopt -s hostcomplete interactive_comments mailwarn promptvars sourcepath
+    
+    set -b
+
+    # Set notify if you want to be asynchronously notified about background
+    # job completion.
+    notify=''
+
+    # Make it so that failed `exec' commands don't flush this shell.
+    no_exit_on_failed_exec=1
+
+    # untrap C-s so that it no longer suspends input but runs forward
+    # search history like it is supposed to 
+    # stty stop undef
+
+fi

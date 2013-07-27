@@ -1,0 +1,14 @@
+
+## Where to find the TeX stuff
+TEX_DIRS="/usr/local/share/teTeX/bin/$MY_SYS_TYPE"
+
+TEX_BIN=
+for dir in $TEX_DIRS; do
+	if test -d  $dir/. ; then
+		TEX_BIN="$TEX_BIN:$dir"
+	fi
+done
+
+## ##export TETEXDIR=/usr/lib/teTeX
+## ##export TEXMF=/usr/lib/teTeX/texmf
+

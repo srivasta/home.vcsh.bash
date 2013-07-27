@@ -1,0 +1,7 @@
+export GZIP="-9 -N"
+export LS_OPTIONS=''
+export GREP_OPTIONS='--color=auto'
+export HTML_TIDY=$HOME/etc/tidy.conf
+if [ "$TERM" = "xterm" -o "$TERM" = "linux" ]; then
+    export COLORTERM=y
+fi

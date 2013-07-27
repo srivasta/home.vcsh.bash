@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#lynx http://www.debian.org/Bugs/db/pa/l$1.html
+lynx http://bugs.debian.org/$1
+

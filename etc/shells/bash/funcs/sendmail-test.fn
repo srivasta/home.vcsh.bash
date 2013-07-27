@@ -1,0 +1,8 @@
+##sendmail-test.fn ()
+##{
+
+    sed -n -e '/^#/d' -e 's/:.*//p' < /usr/lib/aliases | 
+	xargs /usr/lib/sendmail -bv | 
+	egrep -v "deliverable|Can't create output"
+
+##}

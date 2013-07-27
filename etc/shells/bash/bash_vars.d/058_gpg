@@ -1,0 +1,8 @@
+
+if test -d ~/lib/.sec/. ; then
+	export PGPPATH=~/lib/.sec
+	export GNUPGHOME=~/lib/.sec
+fi
+
+export PGPPATH
+

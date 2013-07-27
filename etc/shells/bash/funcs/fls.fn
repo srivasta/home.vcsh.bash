@@ -1,0 +1,7 @@
+##fls.fn ()
+##{
+  set -f;
+  flscmd "$*";
+  set +f;
+
+##}

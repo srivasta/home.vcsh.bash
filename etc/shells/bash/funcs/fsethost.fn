@@ -1,0 +1,6 @@
+##fsethost.fn ()
+##{
+   setenv FSP_DIR /; 
+   setenv FSP_HOST "$1";
+   setenv FSP_PORT "$2";
+##}

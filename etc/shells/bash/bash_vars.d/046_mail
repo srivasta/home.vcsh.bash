@@ -1,0 +1,16 @@
+
+WHOAMI=$(whoami)
+
+# export MAIL=/var/spool/mail/$WHOAMI
+export MAIL=/home/srivasta/var/spool/mail/important
+set mail=$MAIL
+MAILPATH='~/var/spool/mail/admin?"$_ has mail":~/var/spool/mail/cmds?"$_ has mail":~/var/spool/mail/important?"$_ has mail":~/var/spool/mail/misc?"$_ has mail":~/var/spool/mail/bcast?"$_ has mail"'
+
+export MAILCHECK=60
+export MAIL_WARNING=yup
+#The following are for the friendly perl script con 
+export NETRCFILE=$HOME/.netrc
+
+export DEBFULLNAME='Manoj Srivastava' 
+export DEBEMAIL=srivasta@debian.org
+export EMAIL=srivasta@ieee.org

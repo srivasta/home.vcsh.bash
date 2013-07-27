@@ -1,0 +1,32 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+
+    syntax='gnu [on|off|prod]';
+    gnu off
+    case "$SYSTEM" in
+	hppa1.1-hp-hpux*)
+	    cc=c89
+    	    cflags="-Aa -c -D_HPUX_SOURCE -Wp,-B256000 -Wl,-a,archive +w1 "
+	    prodflags="-O"
+	    ;;
+	mips-dec-ultrix*)
+	    cc=gcc
+	    cflags="-g -Wall -Wpointer-arith -Wshadow \ 
+                    -Wwrite-strings -Wstrict-prototypes \
+                    -Wmissing-prototypes -ansi -pedantic"
+	    prodflags="-O2"
+	    if test -O `tty`  ; then
+		biff y
+	    fi
+	    ;;
+	alpha-dec-osf*)
+	    cc=cc
+	    cflags="-g -verbose -D_SHARED_LIBRARIES -Dalpha -D_REENTRANT -std1"
+	    prodflags="-O -D_SHARED_LIBRARIES -Dalpha -D_REENTRANT -std1 "
+	    if test -O `tty`  ; then
+		biff y
+	    fi
+	    ;;
+    esac
+fi

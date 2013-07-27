@@ -1,0 +1,14 @@
+
+
+## Where to find the X stuff
+X11_DIRS=" /usr/X11R6/bin /usr/X11R5/bin /usr/X386/bin
+ /usr/local/bin/X11 /usr/bin/X11"
+
+X11_BIN=
+for dir  in $X11_DIRS; do
+    if test -d  $dir/. ; then
+	X11_BIN="$X11_BIN:$dir"
+    fi
+done
+
+export X_AUTHORITY=$default_dir/.Xauthority

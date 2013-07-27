@@ -1,0 +1,13 @@
+#! /bin/bash
+
+# Startup file for bash login shells.
+#
+export default_dir=${default_dir:=$HOME}
+export default_bashdir=${default_bashdir:=$default_dir/etc/shells/bash}
+
+for file in $default_bashdir/bash_profile.d/*; do
+    case "$file" in
+        *~|*.bak|*.old|*.sw?|*.zwc|*.disabled) continue;;
+    esac
+    source $file
+done

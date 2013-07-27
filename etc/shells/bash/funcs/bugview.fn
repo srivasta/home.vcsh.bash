@@ -1,0 +1,24 @@
+    if [ $# = 1 ]; then
+  if expr "$1" : '[0-9][0-9]*$' > /dev/null; then
+    URL='http://bugs.debian.org/cgi-bin/bugreport.cgi?bug='$1'&users=srivasta@debian.org&ordering=policy'
+  else
+    URL='http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=no&pkg='$1'&users=srivasta@debian.org&ordering=policy'
+  fi
+else
+  URL='http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=no&maint=srivasta@debian.org''&users=srivasta@debian.org&ordering=policy'
+fi
+
+if [ -n "$DISPLAY" ]; then
+    if which firefox >/dev/null 2>&1; then
+        #if [ "$OPEN_IN_NEW_TAB" -ne 0 ] ; then INTO=new-tab ; else INTO=new-window ; fi
+        if firefox -remote "ping()" >/dev/null 2>&1; then
+            firefox -remote "openurl($URL,new-tab)"
+        else
+            links "$URL"
+        fi
+    else
+        links "$URL"
+    fi
+else
+    links "$URL"
+fi

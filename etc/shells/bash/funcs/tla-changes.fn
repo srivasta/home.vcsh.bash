@@ -1,0 +1,4 @@
+#tla-changes ()
+#{
+ tla changes $@; tla tree-lint -t -u | awk '{ print "?  " $0 }' 
+#}

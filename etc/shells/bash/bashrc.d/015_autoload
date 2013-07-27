@@ -1,0 +1,14 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+
+    # auto load all functions 
+    if test -f $default_bashdir/autoload.sh ; then
+	. $default_bashdir/autoload.sh
+	FNPATH=$default_bashdir/funcs
+    elif test -f ~srivasta/etc/shells/bash/autoload.sh; then
+	. ~srivasta/etc/shells/bash/autoload.sh
+	FNPATH=~srivasta/etc/shells/bash/funcs
+    fi
+    autoload
+fi

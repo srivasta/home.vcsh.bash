@@ -1,0 +1,5 @@
+
+find /var/spool/mirror/ -type f -name '.[\!.]\*' -ls | \
+   awk '{printf \"% 5d % 8d % 50s\\\n\", $2, $7, $11 }' |                    \
+       sed -e s:/var/spool/mirror/debian/:: -e s:dists/:: -e s:binary-i386/::
+

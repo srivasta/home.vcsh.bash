@@ -1,0 +1,4 @@
+
+if test -f ~/lib/reminders -a -x /usr/bin/remind ; then
+  /usr/bin/remind -v ~/lib/reminders
+fi

@@ -1,0 +1,33 @@
+#! /bin/bash
+#                               -*- Mode: Sh -*- 
+# rsu.fn --- 
+# Author           : Manoj Srivastava ( srivasta@graceland ) 
+# Created On       : Thu Apr  7 12:06:34 1994
+# Created On Node  : graceland
+# Last Modified By : Manoj Srivastava
+# Last Modified On : Tue Feb  3 16:51:14 1998
+# Last Machine Used: tiamat.datasync.com
+# Update Count     : 24
+# Status           : Unknown, Use with caution!
+# HISTORY          : 
+# Description      : 
+# 
+# 
+##su.fn ()
+##{
+	local tmp='/bin/bash  -rcfile "~srivasta/.rootrc" -i';
+	local sucmd='/bin/su'
+	local xtrm='/usr/bin/X11/xterm'
+        if [ -x /usr/X11R6/bin/xterm ] ; then
+              xtrm='/usr/X11R6/bin/xterm'
+        fi
+        xtrm=xterm
+	if [ $# = 0 ] ; then
+		$sucmd -c $tmp root
+	else
+		for host 
+		do
+			rxx $host $xtrm -ut -n $host -title Root -e $sucmd -c '/bin/bash  -rcfile "~srivasta/.rootrc" -i'  root
+		done
+	fi
+##}

@@ -1,0 +1,13 @@
+#! /bin/bash
+
+distribs="/home/va /home/master /home/ametro /home/dragonfyre"
+sources="$@"
+
+rel=$(echo $sources | sed -e "s,$HOME/,,g" -e "s,$HOME,,g" -e "s,//,/,g")
+
+for src in $rel; do
+    for distrib in $distribs; do
+	cp -pf $HOME/$src $distrib/$src
+    done
+    sudo cp $HOME/$src /root/$src
+done

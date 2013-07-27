@@ -1,0 +1,21 @@
+#! /bin/bash
+##gnu.fn ()
+##{
+
+       case $# in
+          0)  echo "is $gnuflag";;
+          1)  case "$1" in
+                 on) gnuflag=on;
+                     export CC=$cc;
+                     export CFLAGS="$cflags";
+		             export YACC="bison -y -t -d -v";;
+                 off) gnuflag=off;
+                      unset CC; unset CFLAGS;unset YACC;;
+                 prod) gnuflag=prod;
+                      export CC=$cc;
+                     export CFLAGS="$prodflags";;
+                 *) echo "$syntax";;
+               esac;;
+           *)        echo "$syntax";;
+        esac
+##}

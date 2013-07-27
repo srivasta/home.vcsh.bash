@@ -1,0 +1,29 @@
+#! /bin/bash
+
+#prst
+#{
+    local name=$1 args=""
+    shift;
+    args="$@";
+
+    my_file_type=$(file $name | sed -e 's/^[^:]*: *//g');
+    is_postscript=$(echo "$my_file_type" | egrep -i Postscript);
+
+    if [ "X$is_postscript" = "X" ]; then
+	newname=$(basename "$name")
+	newname="$$_$newname.ps"
+	oldname="$name";
+	name="$newname";
+	if [ -e $name ]; then
+	    name="$$_$name"
+	fi
+	enscript $args -1 -G -H -j  -i 0.5i -M letter -p $name $oldname;
+    fi
+    pstops $args -pletter 2:0   $name > tmp1.ps;
+    pstops $args -pletter 2:-1  $name > tmp2.ps;
+    if [ "X$is_postscript" = "X" ]; then
+	rm -f $name 
+    fi
+
+#}
+

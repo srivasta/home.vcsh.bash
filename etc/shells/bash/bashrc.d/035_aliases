@@ -1,0 +1,12 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+	
+    # Load aliases
+    set noglob; eval `resize`; unset noglob;reset
+    if test -f $default_bashdir/bash_aliases ; then
+	. $default_bashdir/bash_aliases;
+    elif test -f ~/.bash_aliases ; then
+	. ~/.bash_aliases ;
+    fi
+fi

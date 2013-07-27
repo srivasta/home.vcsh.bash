@@ -1,0 +1,6 @@
+
+
+export TEXEDIT='emacsclient +%d %s'
+if test -d $default_dir/tex/inputs/. ; then
+	export TEXINPUTS=$default_dir/tex/inputs:
+fi

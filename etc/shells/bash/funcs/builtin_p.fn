@@ -1,0 +1,29 @@
+# What is does is tell you if a particular keyword is currently enabled as
+# a shell builtin.  It does NOT tell you if invoking that keyword will
+# necessarily run the builtin.  For that, do something like
+#
+#       test "$(builtin type -type [keyword])" = "builtin"
+#
+# Note also, that disabling a builtin with "enable -n" will make builtin_p
+# return false, since the builtin is no longer available.
+#function builtin_p ()
+#{
+ local word
+
+    set $(builtin type -all -type "$1")
+
+    for word in "$@" ; do
+       if [ "${word}" = "builtin" ]; then
+          return 0
+       fi
+    done
+
+    return 1
+#}
+
+#  builtin_p () {
+#    case "`builtin type -all -type "$1"`" in
+#      *builtin) return 0 ;;
+#    esac
+#    return 1
+#  }

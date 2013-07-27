@@ -1,0 +1,46 @@
+
+# If running interactively, then:
+if test ! -z "$PS1" ; then
+    if test ! "$LOGIN_SHELL" ; then
+	PS1="\u@\h\$ "
+    fi
+
+    # Set up a basic FixPrompt command, the aliases file changes this
+    PROMPT_COMMAND='PS1="\u@\h\$ "'
+    # set up the prompt variables depending on termcap
+
+    if test -z "$WHOAMI"  ; then export WHOAMI=`whoami`; fi
+    export PROMPTCOMMENT=""
+    export CDENTER=".cdinit.cmd"
+    export CDEXIT=".cdexit.cmd"
+    export rev_vid=""
+    export dim_vid=""
+    export norm_vid=""
+    export host_pfx=""
+    this_dir=.
+    last_dir=.             
+
+    workdir=`prunepwd 20`
+    if test -f $default_bashdir/bashprompt ; then
+	PROMPT_SCRIPT="$default_bashdir/bashprompt"
+    elif test -f ~/.bashprompt ; then
+	PROMPT_SCRIPT="~/.bashprompt"
+    fi
+    alias c='clear'
+    if test "$TERM" = "emacs" ; then
+	    PROMPT_COMMAND='PS1="__> " '
+    else 
+	if test -n "$PROMPT_SCRIPT"; then
+	    . $PROMPT_SCRIPT
+	fi
+	if test "$TERM" = "xterm" || test "$TERM" = "xterm-debian"; then
+	    #PROMPT_COMMAND='PS1="\[\e[$(apm_color)m\]__>\[\e[0m\] " ';
+	    PROMPT_COMMAND='PS1="__> " ';
+        elif test "$TERM" = "Eterm" || test "$TERM" = "eterm"; then
+	    #PROMPT_COMMAND='PS1="\e[$(apm_color)m$host_pfx $rev_vid${workdir}$norm_vid$dim_vid$PROMPTCOMMENT _>${norm_vid}\[\e[0m\] "'
+	    PROMPT_COMMAND='PS1="$host_pfx $rev_vid${workdir}$norm_vid$dim_vid$PROMPTCOMMENT _>${norm_vid} "'
+	else
+	    PROMPT_COMMAND='PS1="\e[$(apm_color)m$host_pfx$rev_vid<\u@\h:$norm_vid[$dim_vid$PROMPTCOMMENT${workdir}${norm_vid}]>\[\e[0m\] "'
+	fi
+    fi
+fi

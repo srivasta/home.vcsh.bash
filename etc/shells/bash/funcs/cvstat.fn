@@ -1,0 +1,21 @@
+#! /bin/bash
+
+#                               -*- Mode: Sh -*- 
+# cvstat.fn --- 
+# Author           : Manoj Srivastava ( srivasta@graceland ) 
+# Created On       : Fri Mar 18 23:25:10 1994
+# Created On Node  : graceland
+# Last Modified By : Manoj Srivastava
+# Last Modified On : Tue Feb  3 16:43:27 1998
+# Last Machine Used: tiamat.datasync.com
+# Update Count     : 13
+# Status           : Unknown, Use with caution!
+# HISTORY          : 
+# Description      : 
+# 
+# 
+
+local options="$1" regexp=${2-'Up-to-date'};
+local ln='==================================================================='
+
+ cvs status $options | perl -nle  '$/="'$ln'"; print unless /'$regexp'/o;'

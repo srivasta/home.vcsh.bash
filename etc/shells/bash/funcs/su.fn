@@ -1,0 +1,10 @@
+#! /bin/bash
+##su.fn ()
+##{
+
+	if [ $# = 0 ] ; then
+	/bin/su -c '/bin/bash  -rcfile "~srivasta/.rootrc" -i' root
+	else
+		/bin/su $@
+	fi
+##}
