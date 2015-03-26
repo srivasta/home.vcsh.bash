@@ -12,11 +12,11 @@
       last_dir="$this_dir"
       this_dir="`pwd`"
       if [ "$TERM" = "xterm" -o "$TERM" = "xterm-debian" -o "$TERM" = "Eterm" ]; then
-          workdir=`prunepwd 30`
+          workdir=`~/bin/prunepwd 30`
          tn "$WHOAMI@$HOST:$workdir"
          #tp
       else
-          workdir=`prunepwd 20`
+          workdir=`~/bin/prunepwd 20`
       fi
       if [ -O "$CDENTER"  ] && [ -f "$CDENTER" ]; then 
          source $CDENTER 

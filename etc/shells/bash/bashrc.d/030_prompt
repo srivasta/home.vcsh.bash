@@ -20,7 +20,7 @@ if test ! -z "$PS1" ; then
     this_dir=.
     last_dir=.             
 
-    workdir=`prunepwd 20`
+    workdir=`~/bin/prunepwd 20`
     if test -f $default_bashdir/bashprompt ; then
 	PROMPT_SCRIPT="$default_bashdir/bashprompt"
     elif test -f ~/.bashprompt ; then
