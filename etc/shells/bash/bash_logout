@@ -8,4 +8,4 @@ if [ "$DISPLAY" ];then
    cln -a $HOME
 fi
 # builtin cd; cleanup &
-
+gnome-session-quit || true
